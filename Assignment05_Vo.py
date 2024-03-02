@@ -16,8 +16,8 @@ class BasicMathOperations:
     
     # add numbers
     def add_numbers(self, num1, num2):
-        sum = num1 + num2
-        return sum
+        num_sum = float(num1) + float(num2)
+        return print("The sum of your numbers is", num_sum)
     
     # perform operations
     def perform_operations(self, num1, num2, operator):
@@ -30,9 +30,9 @@ class BasicMathOperations:
         else:
             result = num1 * num2
         return result
-        
+# ============================================        
 def main():
-    instance1 = BasicMathOperations()
+    instance = BasicMathOperations()
     print(""""
 You can chose to do any of the following.
           
@@ -60,13 +60,28 @@ You can chose to do any of the following.
                 user1 = input("Enter your first and last name, separated by a space: ")
                 user1_fName = user1.split()[0]
                 user1_lName = user1.split()[1]
-                instance1.greet_user(user1_fName, user1_lName)
+                instance.greet_user(user1_fName, user1_lName)
                 break
             elif selection == 2:
-                q2_num1 = input("Enter a number: ")
-                q2_num2 = input("Enter a number to add to your first number: ")
-                
+                nums = question2()
+                print(nums)
+                q2_num1 = nums[0]
+                q2_num2 = nums[1]
+                instance.add_numbers(q2_num1, q2_num2)
+                break
             elif selection == 3:
+                while True:
+                    valid_operators = [ "+", "-", "/", "*"]
+                    equation = input("Enter a basic math equation using numbers and the +, -, /, * operators. Separate each with a space." )
+                    equation_parts = equation.split()
+                    q3_num1 = equation_parts[0]
+                    input_operator = equation_parts[1]
+                    q3_num2 = equation_parts[2]
+                    if input_operator in valid_operators:
+                        instance.perform_0perations(q3_num1, q3_num2, input_operator)
+                        break
+                    else:
+                        print("Operators must be +, -, /, or *. Try again.")
                 break
             elif selection == 4:
                 break
@@ -86,7 +101,31 @@ You can chose to do any of the following.
             print("Invalid input. You must select a number between 1 and 10.")
         
     return print("Thanks for doing a task!")
-                
+
+# ============================================    
+            
+def question2():
+    nums_list = []
+    while True:
+        try:
+            q2_num1 = float(input("Enter a number: "))
+        except:
+            print("Invalid input. Please enter only a number.")  
+            continue
+        while True:
+            try:
+                q2_num2 = float(input("Enter a number to add to your first number: "))
+                break
+            except:
+                print("Invalid input. Please enter only a number.") 
+        break
+    nums_list.append(q2_num1)
+    nums_list.append(q2_num2)    
+    return nums_list
+
+# ============================================    
+    
+
 main()
 
 
