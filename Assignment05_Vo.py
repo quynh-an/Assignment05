@@ -29,7 +29,7 @@ class BasicMathOperations:
             result = num1 / num2
         else:
             result = num1 * num2
-        return result
+        return print("The result of the operation is", result)
 # ============================================        
 def main():
     instance = BasicMathOperations()
@@ -72,16 +72,20 @@ You can chose to do any of the following.
             elif selection == 3:
                 while True:
                     valid_operators = [ "+", "-", "/", "*"]
-                    equation = input("Enter a basic math equation using numbers and the +, -, /, * operators. Separate each with a space." )
-                    equation_parts = equation.split()
-                    q3_num1 = equation_parts[0]
-                    input_operator = equation_parts[1]
-                    q3_num2 = equation_parts[2]
-                    if input_operator in valid_operators:
-                        instance.perform_0perations(q3_num1, q3_num2, input_operator)
-                        break
-                    else:
-                        print("Operators must be +, -, /, or *. Try again.")
+                    equation = input("Enter a basic math equation using numbers and the +, -, /, * operators. Separate each with a space. " )
+                    try:
+                        equation_parts = equation.split()
+                        q3_num1 = float(equation_parts[0])
+                        input_operator = equation_parts[1]
+                        q3_num2 = float(equation_parts[2])
+                        if input_operator in valid_operators:
+                            instance.perform_operations(q3_num1, q3_num2, input_operator)
+                            break
+                        else:
+                            print("Operators must be +, -, /, or *. Try again.")
+                    except:
+                        print("Invalid math question.")
+                                
                 break
             elif selection == 4:
                 break
