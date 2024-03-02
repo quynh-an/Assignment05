@@ -48,7 +48,7 @@ class BasicMathOperations:
         print("Let's start counting!")
         for number in range(q6_number1, q6_number2 +1):
             print(number)
-        return True
+            number = number + 1
             
 # ============================================        
 def main():
@@ -134,14 +134,17 @@ You can chose to do any of the following.
                             print("Invalid input") 
                 break
             elif selection == 6:
-                try:
+                while True:
                     q6_num1 = input("Enter an integer to start counting! ")
                     q6_num2 = input("Enter an integer to end your counting! ")
-                    if instance.counting(q6_num1, q6_num2) == True:
+                    try:
+                        q6_num1 = int(q6_num1)
+                        q6_num2 = int(q6_num2)
+                        instance.counting(q6_num1, q6_num2)
                         print("All done counting!")
-                    break
-                except: 
-                    print("Invalid inputs. Try again.")
+                        break
+                    except: 
+                        print("Invalid input. Try again.")
                 break
             elif selection == 7:
                 break
