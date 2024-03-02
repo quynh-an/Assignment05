@@ -30,6 +30,11 @@ class BasicMathOperations:
         else:
             result = num1 * num2
         return print("The result of the operation is", result)
+    
+    # square number
+    def square_number(self, number):
+        square_value = number**2
+        return print(f"The squared value of {number} is", square_value)
 # ============================================        
 def main():
     instance = BasicMathOperations()
@@ -84,10 +89,21 @@ You can chose to do any of the following.
                         else:
                             print("Operators must be +, -, /, or *. Try again.")
                     except:
-                        print("Invalid math question.")
-                                
+                        print("Invalid input. Please follow the directions.")
                 break
             elif selection == 4:
+                while True:
+                    number_to_square = input("Enter a number to find its square: ")
+                    try:
+                        if '.' in number_to_square:
+                            number_to_square = float(number_to_square)
+                            instance.square_number(number_to_square)
+                        else:
+                            number_to_square = int(number_to_square)
+                            instance.square_number(number_to_square)
+                        break
+                    except:
+                        print("Enter a valid number to square")
                 break
             elif selection == 5:
                 break
