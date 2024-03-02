@@ -32,9 +32,9 @@ class BasicMathOperations:
         return print("The result of the operation is", result)
     
     # square number
-    def square_number(self, number):
+    def calculateSquare(self, number):
         square_value = number**2
-        return print(f"The squared value of {number} is", square_value)
+        return square_value
     
     # compute factorial
     def factorial(self, q5_number):
@@ -49,6 +49,13 @@ class BasicMathOperations:
         for number in range(q6_number1, q6_number2 +1):
             print(number)
             number = number + 1
+            
+    # calculate hypotenuse
+    def calculateHypotenuse(self, base, perpendicular):
+        base_squared = self.calculateSquare(base)
+        perpendicular_squared = self.calculateSquare(perpendicular)
+        hypotenuse = (base_squared + perpendicular_squared) ** 0.5
+        return hypotenuse
             
 # ============================================        
 def main():
@@ -112,10 +119,10 @@ You can chose to do any of the following.
                     try:
                         if '.' in number_to_square:
                             number_to_square = float(number_to_square)
-                            instance.square_number(number_to_square)
+                            print(f"The squared value of {number_to_square} is", instance.calculateSquare(number_to_square))
                         else:
                             number_to_square = int(number_to_square)
-                            instance.square_number(number_to_square)
+                            print(f"The squared value of {number_to_square} is", instance.calculateSquare(number_to_square))
                         break
                     except:
                         print("Enter a valid number to square")
@@ -141,12 +148,27 @@ You can chose to do any of the following.
                         q6_num1 = int(q6_num1)
                         q6_num2 = int(q6_num2)
                         instance.counting(q6_num1, q6_num2)
+                        print(" ")
                         print("All done counting!")
                         break
                     except: 
                         print("Invalid input. Try again.")
                 break
             elif selection == 7:
+                base = input("Enter a value for the base of your triangle: ")
+                try:
+                    base = float(base)
+                    if base > 0:
+                        perpendicular = input("Enter a value for the perpendicular of your triangle: ")
+                        try:
+                            perpendicular = float(perpendicular)
+                        except:
+                            print("Please enter a number value.")
+                    else:
+                        print("Invalid base value. Must be a number greater than 0.")
+                except:
+                    print("Please enter a valid value for the base.")
+                print("The hypotenuse is", instance.calculateHypotenuse(base, perpendicular))
                 break
             elif selection == 8:
                 break
