@@ -35,6 +35,21 @@ class BasicMathOperations:
     def square_number(self, number):
         square_value = number**2
         return print(f"The squared value of {number} is", square_value)
+    
+    # compute factorial
+    def factorial(self, q5_number):
+        factorial_value = 1
+        for i in range(1, q5_number+1):
+            factorial_value = factorial_value * i 
+        return factorial_value
+    
+    # counting from and to a number
+    def counting(self, q6_number1, q6_number2):
+        print("Let's start counting!")
+        for number in range(q6_number1, q6_number2 +1):
+            print(number)
+        return True
+            
 # ============================================        
 def main():
     instance = BasicMathOperations()
@@ -106,8 +121,27 @@ You can chose to do any of the following.
                         print("Enter a valid number to square")
                 break
             elif selection == 5:
+                while True:
+                    q5_num = input("Enter a value to find its factorial. It must be a positive integer. ")
+                    if float(q5_num) <= 0:
+                        print("Invalid input. Must be positive integer.")
+                    else:
+                        try:
+                            q5_num = int(q5_num)
+                            print("The factorial of this number is", instance.factorial(q5_num))
+                            break
+                        except:
+                            print("Invalid input") 
                 break
             elif selection == 6:
+                try:
+                    q6_num1 = input("Enter an integer to start counting! ")
+                    q6_num2 = input("Enter an integer to end your counting! ")
+                    if instance.counting(q6_num1, q6_num2) == True:
+                        print("All done counting!")
+                    break
+                except: 
+                    print("Invalid inputs. Try again.")
                 break
             elif selection == 7:
                 break
