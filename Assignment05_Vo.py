@@ -66,6 +66,12 @@ class BasicMathOperations:
     def number_power(self, base, exponent):
         power = base ** exponent
         return power
+    
+    # type of argument
+    def argument_type(self, argument):
+        argument_type = type(argument)
+        return print("The argument type is", argument_type)
+        
 # ============================================        
 def main():
     instance = BasicMathOperations()
@@ -237,6 +243,51 @@ You can chose to do any of the following.
                         print("2")
                 break
             else:
+                check_result = False
+                input_argument = input("Enter an argument to find its type: ")
+                if input_argument.isdigit():
+                    instance.argument_type(int(input_argument))
+                elif '.' in input_argument:
+                    try:
+                        instance.argument_type(float(input_argument))
+                    except ValueError:
+                        instance.argument_type(input_argument)
+                elif '+' in input_argument or '-' in input_argument:
+                    try:
+                        instance.argument_type(complex(input_argument))
+                    except ValueError:
+                        instance.argument_type(input_argument)
+                elif '{' in input_argument and '}' in input_argument:
+                    if ':' in input_argument:
+                        try:
+                            input_argument = eval(input_argument)
+                            instance.argument_type(input_argument)
+                        except ValueError:
+                            instance.argument_type(input_argument)
+                    else:
+                        try:
+                            instance.argument_type(set(input_argument))
+                        except ValueError:
+                                instance.argument_type(input_argument)
+                elif '[' in input_argument and ']' in input_argument:
+                    try:
+                        instance.argument_type(list(input_argument))
+                    except ValueError:
+                        instance.argument_type(input_argument)
+                elif '(' in input_argument and ')' in input_argument:
+                    try:
+                        input_argument = input_argument.lstrip('(')
+                        input_argument = input_argument.lstrip(')')
+                        if ',' in input_argument:
+                            instance.argument_type(tuple(input_argument))
+                        else:
+                            instance.argument_type(input_argument)
+                    except ValueError:
+                        instance.argument_type(input_argument)
+                else:
+                    instance.argument_type(input_argument)
+                    check_result = True
+
                 break
         else:
             print("Invalid input. You must select a number between 1 and 10.")
