@@ -16,10 +16,11 @@ class BasicMathOperations:
     
     # 2: add numbers
     def add_numbers(self):
-        nums_list = []
         while True:
             q2_num1 = input("Enter a number: ")
+            # checing for period is checking for float
             if '.' in q2_num1:
+                # test out float if not float and not int, then invalid input
                 try:
                     q2_num1 = float(q2_num1)
                     while True:
@@ -44,12 +45,15 @@ class BasicMathOperations:
                 except:
                     print("Invalid input. Please enter only a number.")  
                     continue
+            # see if input is an integer
             else:
                  try:
                      q2_num1 = int(q2_num1)
+                     # if it is an integer then ask for next number to add, test float or int again
                      while True:
                          try:
                              q2_num2 = input("Enter a number to add to your first number: ")
+                             # check if float or int
                              if '.' in q2_num2:
                                  try:
                                      q2_num2 = float(q2_num2)
@@ -70,11 +74,7 @@ class BasicMathOperations:
                      print("Invalid input. Please enter only a number.")  
                      continue  
             break
-        nums_list.append(q2_num1)
-        nums_list.append(q2_num2) 
-        q2_num1 = nums_list[0]
-        q2_num2 = nums_list[1]
-        num_sum = q2_num1 + q2_num2
+        num_sum = round(q2_num1 + q2_num2, 4)
         return print("The sum of your numbers is", num_sum)
     
     # 3: perform operations
@@ -133,9 +133,8 @@ class BasicMathOperations:
             
     # 9: power of a number
     def number_power(self, base, exponent):
-        
         power = base ** exponent
-        return power
+        return round(power, 4)
     
     # 10: type of argument
     def argument_type(self, argument):
