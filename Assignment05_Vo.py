@@ -74,7 +74,9 @@ class BasicMathOperations:
                      print("Invalid input. Please enter only a number.")  
                      continue  
             break
+        # find the sum
         num_sum = round(q2_num1 + q2_num2, 4)
+        # return the sum
         return print("The sum of your numbers is", num_sum)
     
     # 3: perform operations
@@ -160,18 +162,29 @@ You can chose to do any of the following.
           
 """)
     while True:
+        # ask user for a choice task
         selection = input("Please make a selection based on the number of the options: ")
         try: 
+            # make sure selection is a valid number
             selection = int(selection)
         except ValueError:
             print("Invalid input. You must select a single number 1-10.")
             continue
         if 1 <= selection <= 10:
             if selection == 1:
-                user1 = input("Enter your first and last name, separated by a space: ")
-                fName = user1.split()[0]
-                lName = user1.split()[1]
-                instance.greet_user(fName, lName)
+                # ask for first and last name
+                while True:
+                    user1 = input("Enter your first and last name, separated by a space: ")
+                    if 0 < len(user1.split()) <= 2:
+                        try:
+                            fName = user1.split()[0]
+                            lName = user1.split()[1]
+                            instance.greet_user(fName, lName)
+                            break
+                        except:
+                            print("Invalid input. Must only put first and last name.")
+                    else:
+                        print("Invalid input. Must only put first and last name.")
                 break
             elif selection == 2:
                 instance.add_numbers()
