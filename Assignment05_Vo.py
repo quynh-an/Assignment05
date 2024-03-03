@@ -56,6 +56,11 @@ class BasicMathOperations:
         perpendicular_squared = self.calculateSquare(perpendicular)
         hypotenuse = (base_squared + perpendicular_squared) ** 0.5
         return hypotenuse
+    
+    # area of a rectangle
+    def rectangular_area(self, width, height):
+        area = width * height
+        return area
             
 # ============================================        
 def main():
@@ -171,6 +176,18 @@ You can chose to do any of the following.
                 print("The hypotenuse is", instance.calculateHypotenuse(base, perpendicular))
                 break
             elif selection == 8:
+                while True:
+                    q8_width = input("Enter the width of your rectangle: ")
+                    try: 
+                        q8_width = float(q8_width)
+                        q8_height = input("Enter the height of your rectangle: ")
+                        try:
+                            q8_height = float(q8_height)
+                        except:
+                             print("Invalid height.") 
+                    except:
+                        print("Invalid width.")
+                    
                 break
             elif selection == 9:
                 break
