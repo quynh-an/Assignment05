@@ -44,11 +44,22 @@ class BasicMathOperations:
         return factorial_value
     
     # counting from and to a number
-    def counting(self, q6_number1, q6_number2):
+    def counting(self):
         print("Let's start counting!")
-        for number in range(q6_number1, q6_number2 +1):
-            print(number)
-            number = number + 1
+        while True:
+            q6_num1 = input("Enter an integer to start counting! ")
+            q6_num2 = input("Enter an integer to end your counting! ")
+            try:
+                q6_num1 = int(q6_num1)
+                q6_num2 = int(q6_num2)
+                for number in range(q6_num1, q6_num2 +1):
+                    print(number)
+                    number = number + 1
+                print(" ")
+                print("All done counting!")
+                break
+            except: 
+                print("Invalid input. Try again.")
             
     # calculate hypotenuse
     def calculateHypotenuse(self, base, perpendicular):
@@ -145,18 +156,7 @@ You can chose to do any of the following.
                             print("Invalid input") 
                 break
             elif selection == 6:
-                while True:
-                    q6_num1 = input("Enter an integer to start counting! ")
-                    q6_num2 = input("Enter an integer to end your counting! ")
-                    try:
-                        q6_num1 = int(q6_num1)
-                        q6_num2 = int(q6_num2)
-                        instance.counting(q6_num1, q6_num2)
-                        print(" ")
-                        print("All done counting!")
-                        break
-                    except: 
-                        print("Invalid input. Try again.")
+                instance.counting()
                 break
             elif selection == 7:
                 while True:
@@ -325,6 +325,8 @@ def question9(instance):
                     print("Invalid base number.")
             except:
                 print("Invalid base number.")
+
+# ===============================================
 
 main()
 
