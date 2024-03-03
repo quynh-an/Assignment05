@@ -160,20 +160,24 @@ You can chose to do any of the following.
                         print("Invalid input. Try again.")
                 break
             elif selection == 7:
-                base = input("Enter a value for the base of your triangle: ")
-                try:
-                    base = float(base)
-                    if base > 0:
-                        perpendicular = input("Enter a value for the perpendicular of your triangle: ")
-                        try:
-                            perpendicular = float(perpendicular)
-                        except:
-                            print("Please enter a number value.")
-                    else:
-                        print("Invalid base value. Must be a number greater than 0.")
-                except:
-                    print("Please enter a valid value for the base.")
-                print("The hypotenuse is", instance.calculateHypotenuse(base, perpendicular))
+                while True:
+                    base = input("Enter a value for the base of your triangle: ")
+                    try:
+                        base = float(base)
+                        if base > 0:
+                            while True:
+                                perpendicular = input("Enter a value for the perpendicular of your triangle: ")
+                                try:
+                                    perpendicular = float(perpendicular)
+                                    print("The hypotenuse is", instance.calculateHypotenuse(base, perpendicular))
+                                    break
+                                except:
+                                    print("Please enter a number value.")
+                            break
+                        else:
+                            print("Invalid base value. Must be a number greater than 0.")
+                    except:
+                        print("Please enter a valid value for the base.")
                 break
             elif selection == 8:
                 while True:
@@ -187,7 +191,6 @@ You can chose to do any of the following.
                              print("Invalid height.") 
                     except:
                         print("Invalid width.")
-                    
                 break
             elif selection == 9:
                 break
