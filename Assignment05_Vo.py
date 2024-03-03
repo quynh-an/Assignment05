@@ -10,16 +10,74 @@ class BasicMathOperations:
     def __init__(self):
         pass
     
-    # greet user    
+    # 1: greet user    
     def greet_user(self, fName, lName):
         return print(f"Hello, {fName} {lName}!")
     
-    # add numbers
-    def add_numbers(self, num1, num2):
-        num_sum = float(num1) + float(num2)
+    # 2: add numbers
+    def add_numbers(self):
+        nums_list = []
+        while True:
+            q2_num1 = input("Enter a number: ")
+            if '.' in q2_num1:
+                try:
+                    q2_num1 = float(q2_num1)
+                    while True:
+                        try:
+                            q2_num2 = input("Enter a number to add to your first number: ")
+                            if '.' in q2_num2:
+                                try:
+                                    q2_num2 = float(q2_num2)
+                                    break
+                                except:
+                                    print("Invalid input. Please enter only a number.")
+                                    continue
+                            else:
+                                try:
+                                    q2_num2 = int(q2_num2)
+                                    break
+                                except:
+                                    print("Invalid input. Please enter only a number.")  
+                                    continue
+                        except:
+                            print("Invalid input. Please enter only a number.") 
+                except:
+                    print("Invalid input. Please enter only a number.")  
+                    continue
+            else:
+                 try:
+                     q2_num1 = int(q2_num1)
+                     while True:
+                         try:
+                             q2_num2 = input("Enter a number to add to your first number: ")
+                             if '.' in q2_num2:
+                                 try:
+                                     q2_num2 = float(q2_num2)
+                                     break
+                                 except:
+                                     print("Invalid input. Please enter only a number.")
+                                     continue
+                             else:
+                                 try:
+                                     q2_num2 = int(q2_num2)
+                                     break
+                                 except:
+                                     print("Invalid input. Please enter only a number.")  
+                                     continue
+                         except:
+                             print("Invalid input. Please enter only a number.") 
+                 except:
+                     print("Invalid input. Please enter only a number.")  
+                     continue  
+            break
+        nums_list.append(q2_num1)
+        nums_list.append(q2_num2) 
+        q2_num1 = nums_list[0]
+        q2_num2 = nums_list[1]
+        num_sum = q2_num1 + q2_num2
         return print("The sum of your numbers is", num_sum)
     
-    # perform operations
+    # 3: perform operations
     def perform_operations(self, num1, num2, operator):
         if operator == "+":
             result = num1 + num2
@@ -31,19 +89,19 @@ class BasicMathOperations:
             result = num1 * num2
         return print("The result of the operation is", result)
     
-    # square number
+    # 4: square number
     def calculateSquare(self, number):
         square_value = number**2
         return square_value
     
-    # compute factorial
+    # 5: compute factorial
     def factorial(self, q5_number):
         factorial_value = 1
         for i in range(1, q5_number+1):
             factorial_value = factorial_value * i 
         return factorial_value
     
-    # counting from and to a number
+    # 6: counting from and to a number
     def counting(self):
         print("Let's start counting!")
         while True:
@@ -61,24 +119,24 @@ class BasicMathOperations:
             except: 
                 print("Invalid input. Try again.")
             
-    # calculate hypotenuse
+    # 7: calculate hypotenuse
     def calculateHypotenuse(self, base, perpendicular):
         base_squared = self.calculateSquare(base)
         perpendicular_squared = self.calculateSquare(perpendicular)
         hypotenuse = (base_squared + perpendicular_squared) ** 0.5
         return hypotenuse
     
-    # area of a rectangle
+    # 8: area of a rectangle
     def rectangular_area(self, width, height):
         area = width * height
         return area
             
-    # power of a number
+    # 9: power of a number
     def number_power(self, base, exponent):
         power = base ** exponent
         return power
     
-    # type of argument
+    # 10: type of argument
     def argument_type(self, argument):
         argument_type = type(argument)
         return print("The argument type is", argument_type)
@@ -116,11 +174,7 @@ You can chose to do any of the following.
                 instance.greet_user(user1_fName, user1_lName)
                 break
             elif selection == 2:
-                nums = question2()
-                print(nums)
-                q2_num1 = nums[0]
-                q2_num2 = nums[1]
-                instance.add_numbers(q2_num1, q2_num2)
+                instance.add_numbers()
                 break
             elif selection == 3:
                 while True:
@@ -208,27 +262,6 @@ You can chose to do any of the following.
    
     print(" ")    
     return print("Thanks for doing a task!")
-
-# ============================================    
-            
-def question2():
-    nums_list = []
-    while True:
-        try:
-            q2_num1 = float(input("Enter a number: "))
-        except:
-            print("Invalid input. Please enter only a number.")  
-            continue
-        while True:
-            try:
-                q2_num2 = float(input("Enter a number to add to your first number: "))
-                break
-            except:
-                print("Invalid input. Please enter only a number.") 
-        break
-    nums_list.append(q2_num1)
-    nums_list.append(q2_num2)    
-    return nums_list
 
 # ============================================    
 
