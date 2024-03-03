@@ -91,28 +91,8 @@ class BasicMathOperations:
         return print("The result of the operation is", result)
     
     # 4: square number
-    def calculateSquare(self):
-        while True:
-            number_to_square = input("Enter a number to find its square: ")
-            try:
-                if '.' in number_to_square:
-                    try:
-                        number_to_square = float(number_to_square)
-                        square_value = number_to_square**2
-                        print(f"The squared value of {number_to_square} is", square_value)
-                        break
-                    except:
-                        print("Invalid input. Only numbers allowed.")
-                else:
-                    try:
-                        number_to_square = int(number_to_square)
-                        square_value = number_to_square**2
-                        print(f"The squared value of {number_to_square} is", square_value)
-                        break
-                    except:
-                        print("Invalid input. Only numbers allowed.")
-            except:
-                print("Enter a valid number to square")
+    def calculateSquare(self, number_to_square):
+        square_value = round(number_to_square * number_to_square, 6)
         return square_value
     
     # 5: compute factorial
@@ -225,7 +205,26 @@ You can chose to do any of the following.
                         print("Invalid input. Please follow the directions.")
                 break
             elif selection == 4:
-                instance.calculateSquare()
+                while True:
+                    number_to_square = input("Enter a number to find its square: ")
+                    try:
+                        if '.' in number_to_square:
+                            try:
+                                number_to_square = float(number_to_square)
+                                square_value = instance.calculateSquare(number_to_square)
+                                break
+                            except:
+                                print("Invalid input. Only numbers allowed.")
+                        else:
+                            try:
+                                number_to_square = int(number_to_square)
+                                square_value = instance.calculateSquare(number_to_square)
+                                break
+                            except:
+                                print("Invalid input. Only numbers allowed.")
+                    except:
+                        print("Enter a valid number to square")
+                print(f"The square of {number_to_square} is", square_value)
                 break
             elif selection == 5:
                 instance.factorial()
