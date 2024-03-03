@@ -53,7 +53,8 @@ class BasicMathOperations:
                      while True:
                          try:
                              q2_num2 = input("Enter a number to add to your first number: ")
-                             # check if float or int
+                             # check if float or int, print error if neither
+                             # break loop if either
                              if '.' in q2_num2:
                                  try:
                                      q2_num2 = float(q2_num2)
@@ -81,6 +82,8 @@ class BasicMathOperations:
     
     # 3: perform operations
     def perform_operations(self, num1, num2, operator):
+        # perform opersation based on *, /, -, +
+        # return result
         if operator == "+":
             result = num1 + num2
         elif operator == "-":
@@ -94,19 +97,27 @@ class BasicMathOperations:
     
     # 4: square number
     def calculateSquare(self, number_to_square):
+        # calculate the square, input number can be float or int round number and return
         square_value = round(number_to_square * number_to_square, 6)
         return square_value
     
     # 5: compute factorial
     def factorial(self):
+        # set factorial to one, since all start there
         factorial_value = 1
         while True:
+            # ask for a value to find the factorial
             q5_num = input("Enter a value to find its factorial. It must be a positive integer. ")
+            # value must be above 0 and an int
+            # if not above 0, then try again
             if float(q5_num) <= 0:
                 print("Invalid input. Must be positive integer.")
             else:
+                # test if it is an int
+                # if nto, then invalid input
                 try:
                     q5_num = int(q5_num)
+                    # circulate through 1 to the value itself and multiply for factorial
                     for i in range(1, q5_num+1):
                         factorial_value = factorial_value * i 
                     break
@@ -117,24 +128,30 @@ class BasicMathOperations:
     # 6: counting from and to a number
     def counting(self, start_num, end_num):
         print("Let's start counting!")
+        # iterate from starting num to ending number and print to count
         for number in range(start_num, end_num +1):
             print(number)
             number = number + 1
 
     # 7: calculate hypotenuse
     def calculateHypotenuse(self, base, perpendicular):
+        # square the base
         base_squared = self.calculateSquare(base)
+        # square the perpendicular
         perpendicular_squared = self.calculateSquare(perpendicular)
+        # find hypotenuse and return
         hypotenuse = (base_squared + perpendicular_squared) ** 0.5
         return hypotenuse
     
     # 8: area of a rectangle
     def rectangular_area(self, width, height):
+        # use width and height to multiply and find area
         area = width * height
         return area
             
     # 9: power of a number
     def number_power(self, base, exponent):
+        # calculate power
         power = base ** exponent
         return round(power, 4)
     
@@ -175,6 +192,8 @@ You can chose to do any of the following.
                 # ask for first and last name
                 while True:
                     user1 = input("Enter your first and last name, separated by a space: ")
+                    # ensure there is a first and last name, no more, no less
+                    # loop through if input invalid
                     if 0 < len(user1.split()) <= 2:
                         try:
                             fName = user1.split()[0]
@@ -187,57 +206,75 @@ You can chose to do any of the following.
                         print("Invalid input. Must only put first and last name.")
                 break
             elif selection == 2:
+                # call add numbers
                 instance.add_numbers()
                 break
             elif selection == 3:
                 while True:
+                    # make sure only the four operators are used
                     valid_operators = [ "+", "-", "/", "*"]
+                    # as for input and operators
                     equation = input("Enter a basic math equation using numbers and the +, -, /, * operators. Separate each with a space. " )
                     try:
+                        # split user input into num1, num2, and operator
                         equation_parts = equation.split()
                         q3_num1 = float(equation_parts[0])
                         input_operator = equation_parts[1]
                         q3_num2 = float(equation_parts[2])
+                        # check a valid operator is used
                         if input_operator in valid_operators:
                             instance.perform_operations(q3_num1, q3_num2, input_operator)
                             break
                         else:
                             print("Operators must be +, -, /, or *. Try again.")
+                    # if the input was incorrectly formatted, then circle back and ask again
                     except:
                         print("Invalid input. Please follow the directions.")
                 break
             elif selection == 4:
                 while True:
+                    # ask for user input
                     number_to_square = input("Enter a number to find its square: ")
                     try:
+                        # check if it is a float
                         if '.' in number_to_square:
                             try:
+                                # try to convert to float then square the number, break loop
                                 number_to_square = float(number_to_square)
                                 square_value = instance.calculateSquare(number_to_square)
                                 break
                             except:
+                                # if not a float, then invalid input
                                 print("Invalid input. Only numbers allowed.")
+                        # try to see if it is an int
                         else:
                             try:
+                                # if an int, sqaure it in the method, break loop
                                 number_to_square = int(number_to_square)
                                 square_value = instance.calculateSquare(number_to_square)
                                 break
                             except:
+                                # if cannot square an int, then invalid input and ask again 
                                 print("Invalid input. Only numbers allowed.")
                     except:
                         print("Enter a valid number to square")
                 print(f"The square of {number_to_square} is", square_value)
                 break
             elif selection == 5:
+                # use the factorial method of instance
                 instance.factorial()
                 break
             elif selection == 6:
                 while True:
+                    # ask for start and end number
                     q6_startnum = input("Enter an integer to start counting! ")
                     q6_endnum = input("Enter an integer to end your counting! ")
+                    # make sure those are counting integers
+                    # if not, then invalid and ask again
                     try:
                         q6_startnum = int(q6_startnum)
                         q6_endnum = int(q6_endnum)
+                        # use instance counting method
                         instance.counting(q6_startnum, q6_endnum)
                         break
                     except: 
@@ -247,43 +284,62 @@ You can chose to do any of the following.
                 break
             elif selection == 7:
                 while True:
+                    # ask for base
                     base = input("Enter a value for the base of your triangle: ")
                     try:
+                        # test if base can be a float
                         base = float(base)
                         if base > 0:
+                            # if base is valid length, ask for perpendicular
                             while True:
                                 perpendicular = input("Enter a value for the perpendicular of your triangle: ")
                                 try:
+                                    # see if the perpendicular is a valid float
                                     perpendicular = float(perpendicular)
+                                    # calculate hypotenuse method
                                     print("The hypotenuse is", instance.calculateHypotenuse(base, perpendicular))
                                     break
                                 except:
                                     print("Please enter a number value.")
                             break
                         else:
+                            # if base is negative, it won't work
                             print("Invalid base value. Must be a number greater than 0.")
                     except:
                         print("Please enter a valid value for the base.")
                 break
             elif selection == 8:
                 while True:
+                    # ask for width
                     q8_width = input("Enter the width of your rectangle: ")
+                    # test if negative
                     try: 
+                        # try to make width a float
                         q8_width = float(q8_width)
-                        while True:
-                            try:
-                                q8_height = input("Enter the height of your rectangle: ")
-                                q8_height = float(q8_height)
-                                print("The area of your rectangle is", instance.rectangular_area(q8_width, q8_height))
-                                break
-                            except:
-                                 print("Invalid height.") 
-                        break
+                        if q8_width > 0:
+                            while True:
+                                # if it can be a positive float, means it is valid
+                                try:
+                                    # ask for height
+                                    q8_height = input("Enter the height of your rectangle: ")
+                                    q8_height = float(q8_height)
+                                    if q8_height > 0:
+                                        print("The area of your rectangle is", instance.rectangular_area(q8_width, q8_height))
+                                        break
+                                    else:
+                                        print("All lengths must be positive.")
+                                except:
+                                     print("Invalid height.") 
+                            break
+                        else:
+                            print("Lengths are only positive numbers.")
                     except:
                         print("Invalid width.")
                 q8_pt2_width = 10
                 q8_pt2_height = 6
-                print("The area of the second rectangle is", instance.rectangular_area(q8_pt2_width, q8_pt2_height))
+                print("Given width is", q8_pt2_width)
+                print("Given height is", q8_pt2_height)
+                print("The area of the 10 x 6 second rectangle is", instance.rectangular_area(q8_pt2_width, q8_pt2_height))
                 break
             elif selection == 9:
                 print("Given two numbers, we are going to find the power of a number.")
