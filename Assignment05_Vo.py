@@ -108,16 +108,47 @@ class BasicMathOperations:
         return print("The result of the operation is", result)
     
     # 4: square number
-    def calculateSquare(self, number):
-        square_value = number**2
+    def calculateSquare(self):
+        while True:
+            number_to_square = input("Enter a number to find its square: ")
+            try:
+                if '.' in number_to_square:
+                    try:
+                        number_to_square = float(number_to_square)
+                        square_value = number_to_square**2
+                        print(f"The squared value of {number_to_square} is", square_value)
+                        break
+                    except:
+                        print("Invalid input. Only numbers allowed.")
+                else:
+                    try:
+                        number_to_square = int(number_to_square)
+                        square_value = number_to_square**2
+                        print(f"The squared value of {number_to_square} is", square_value)
+                        break
+                    except:
+                        print("Invalid input. Only numbers allowed.")
+            except:
+                print("Enter a valid number to square")
+        
         return square_value
     
     # 5: compute factorial
-    def factorial(self, q5_number):
+    def factorial(self):
         factorial_value = 1
-        for i in range(1, q5_number+1):
-            factorial_value = factorial_value * i 
-        return factorial_value
+        while True:
+            q5_num = input("Enter a value to find its factorial. It must be a positive integer. ")
+            if float(q5_num) <= 0:
+                print("Invalid input. Must be positive integer.")
+            else:
+                try:
+                    q5_num = int(q5_num)
+                    for i in range(1, q5_num+1):
+                        factorial_value = factorial_value * i 
+                    break
+                except:
+                    print("Invalid input") 
+        return print("The value of this factorial is", factorial_value)
     
     # 6: counting from and to a number
     def counting(self):
@@ -195,20 +226,10 @@ You can chose to do any of the following.
                 instance.perform_operations()
                 break
             elif selection == 4:
-                question4(instance)
+                instance.calculateSquare()
                 break
             elif selection == 5:
-                while True:
-                    q5_num = input("Enter a value to find its factorial. It must be a positive integer. ")
-                    if float(q5_num) <= 0:
-                        print("Invalid input. Must be positive integer.")
-                    else:
-                        try:
-                            q5_num = int(q5_num)
-                            print("The factorial of this number is", instance.factorial(q5_num))
-                            break
-                        except:
-                            print("Invalid input") 
+                instance.factorial()
                 break
             elif selection == 6:
                 instance.counting()
@@ -309,22 +330,7 @@ def question10(input_argument, instance):
     else:
         instance.argument_type(input_argument)
 
-# ============================================  
 
-def question4(instance):
-    while True:
-        number_to_square = input("Enter a number to find its square: ")
-        try:
-            if '.' in number_to_square:
-                number_to_square = float(number_to_square)
-                print(f"The squared value of {number_to_square} is", instance.calculateSquare(number_to_square))
-            else:
-                number_to_square = int(number_to_square)
-                print(f"The squared value of {number_to_square} is", instance.calculateSquare(number_to_square))
-            break
-        except:
-            print("Enter a valid number to square")
-            
 # ===============================================
 
 def question9(instance):
