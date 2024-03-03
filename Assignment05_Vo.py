@@ -129,18 +129,7 @@ You can chose to do any of the following.
                         print("Invalid input. Please follow the directions.")
                 break
             elif selection == 4:
-                while True:
-                    number_to_square = input("Enter a number to find its square: ")
-                    try:
-                        if '.' in number_to_square:
-                            number_to_square = float(number_to_square)
-                            print(f"The squared value of {number_to_square} is", instance.calculateSquare(number_to_square))
-                        else:
-                            number_to_square = int(number_to_square)
-                            print(f"The squared value of {number_to_square} is", instance.calculateSquare(number_to_square))
-                        break
-                    except:
-                        print("Enter a valid number to square")
+                question4(instance)
                 break
             elif selection == 5:
                 while True:
@@ -318,7 +307,22 @@ def question10(input_argument, instance):
     else:
         instance.argument_type(input_argument)
 
-# ============================================    
+# ============================================  
+
+def question4(instance):
+    while True:
+        number_to_square = input("Enter a number to find its square: ")
+        try:
+            if '.' in number_to_square:
+                number_to_square = float(number_to_square)
+                print(f"The squared value of {number_to_square} is", instance.calculateSquare(number_to_square))
+            else:
+                number_to_square = int(number_to_square)
+                print(f"The squared value of {number_to_square} is", instance.calculateSquare(number_to_square))
+            break
+        except:
+            print("Enter a valid number to square")
+    
 
 main()
 
