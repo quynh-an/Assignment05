@@ -133,6 +133,7 @@ class BasicMathOperations:
             
     # 9: power of a number
     def number_power(self, base, exponent):
+        
         power = base ** exponent
         return power
     
@@ -268,10 +269,44 @@ You can chose to do any of the following.
                         break
                     except:
                         print("Invalid width.")
+                q8_pt2_width = 10
+                q8_pt2_height = 6
+                print("The area of the second rectangle is", instance.rectangular_area(q8_pt2_width, q8_pt2_height))
                 break
             elif selection == 9:
                 print("Given two numbers, we are going to find the power of a number.")
-                question9(instance)
+                while True:
+                    q9_base = input("Enter a value for the base number for which to find the power: ")
+                    try:
+                        q9_base = int(q9_base)
+                        while True: 
+                            try:
+                                q9_exponent = input("Enter a power to which you will raise the base: ")
+                                q9_exponent = int(q9_exponent)
+                                power_value = instance.number_power(q9_base, q9_exponent)
+                                print(f"{q9_base} to the power of {q9_exponent} is", power_value)
+                                break
+                            except:
+                                 print("The power must be an integer.")
+                        break
+                    except ValueError:
+                        try:
+                            q9_base = float(q9_base)
+                            while True: 
+                               try:
+                                   q9_exponent = input("Enter a power to which you will raise the base: ")
+                                   q9_exponent = int(q9_exponent)
+                                   power_value = instance.number_power(q9_base, q9_exponent)
+                                   print(f"{q9_base} to the power of {q9_exponent} is", power_value)
+                                   break
+                               except:
+                                    print("The power must be an integer.")
+                            break
+                        except:
+                            print("Invalid base number.")
+                    except:
+                        print("Invalid base number.")
+
                 break
             else:
                 input_argument = input("Enter an argument to find its type: ")
@@ -328,41 +363,6 @@ def question10(input_argument, instance):
     else:
         instance.argument_type(input_argument)
 
-
-# ===============================================
-
-def question9(instance):
-        while True:
-            q9_base = input("Enter a value for the base number for which to find the power: ")
-            try:
-                q9_base = int(q9_base)
-                while True: 
-                    try:
-                        q9_exponent = input("Enter a power to which you will raise the base: ")
-                        q9_exponent = int(q9_exponent)
-                        power_value = instance.number_power(q9_base, q9_exponent)
-                        print(f"{q9_base} to the power of {q9_exponent} is", power_value)
-                        break
-                    except:
-                         print("The power must be an integer.")
-                break
-            except ValueError:
-                try:
-                    q9_base = float(q9_base)
-                    while True: 
-                       try:
-                           q9_exponent = input("Enter a power to which you will raise the base: ")
-                           q9_exponent = int(q9_exponent)
-                           power_value = instance.number_power(q9_base, q9_exponent)
-                           print(f"{q9_base} to the power of {q9_exponent} is", power_value)
-                           break
-                       except:
-                            print("The power must be an integer.")
-                    break
-                except:
-                    print("Invalid base number.")
-            except:
-                print("Invalid base number.")
 
 # ===============================================
 
