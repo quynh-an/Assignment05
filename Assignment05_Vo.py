@@ -11,7 +11,10 @@ class BasicMathOperations:
         pass
     
     # 1: greet user    
-    def greet_user(self, fName, lName):
+    def greet_user(self):
+        user1 = input("Enter your first and last name, separated by a space: ")
+        fName = user1.split()[0]
+        lName = user1.split()[1]
         return print(f"Hello, {fName} {lName}!")
     
     # 2: add numbers
@@ -78,15 +81,30 @@ class BasicMathOperations:
         return print("The sum of your numbers is", num_sum)
     
     # 3: perform operations
-    def perform_operations(self, num1, num2, operator):
-        if operator == "+":
-            result = num1 + num2
-        elif operator == "-":
-            result = num1 - num2
-        elif operator == "/":
-            result = num1 / num2
-        else:
-            result = num1 * num2
+    def perform_operations(self):
+        while True:
+            valid_operators = [ "+", "-", "/", "*"]
+            equation = input("Enter a basic math equation using numbers and the +, -, /, * operators. Separate each with a space. " )
+            try:
+                equation_parts = equation.split()
+                q3_num1 = float(equation_parts[0])
+                input_operator = equation_parts[1]
+                q3_num2 = float(equation_parts[2])
+                if input_operator in valid_operators:
+                    if input_operator == "+":
+                        result = q3_num1 + q3_num2
+                    elif input_operator == "-":
+                        result = q3_num1 - q3_num2
+                    elif input_operator == "/":
+                        result = q3_num1 / q3_num2
+                    else:
+                        result = q3_num1 * q3_num2
+                    break
+                else:
+                    print("Operators must be +, -, /, or *. Try again.")
+            except:
+                print("Invalid input. Please follow the directions.")
+                
         return print("The result of the operation is", result)
     
     # 4: square number
@@ -168,30 +186,13 @@ You can chose to do any of the following.
             continue
         if 1 <= selection <= 10:
             if selection == 1:
-                user1 = input("Enter your first and last name, separated by a space: ")
-                user1_fName = user1.split()[0]
-                user1_lName = user1.split()[1]
-                instance.greet_user(user1_fName, user1_lName)
+                instance.greet_user()
                 break
             elif selection == 2:
                 instance.add_numbers()
                 break
             elif selection == 3:
-                while True:
-                    valid_operators = [ "+", "-", "/", "*"]
-                    equation = input("Enter a basic math equation using numbers and the +, -, /, * operators. Separate each with a space. " )
-                    try:
-                        equation_parts = equation.split()
-                        q3_num1 = float(equation_parts[0])
-                        input_operator = equation_parts[1]
-                        q3_num2 = float(equation_parts[2])
-                        if input_operator in valid_operators:
-                            instance.perform_operations(q3_num1, q3_num2, input_operator)
-                            break
-                        else:
-                            print("Operators must be +, -, /, or *. Try again.")
-                    except:
-                        print("Invalid input. Please follow the directions.")
+                instance.perform_operations()
                 break
             elif selection == 4:
                 question4(instance)
