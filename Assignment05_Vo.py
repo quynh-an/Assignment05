@@ -113,23 +113,12 @@ class BasicMathOperations:
         return print("The value of this factorial is", factorial_value)
     
     # 6: counting from and to a number
-    def counting(self):
+    def counting(self, start_num, end_num):
         print("Let's start counting!")
-        while True:
-            q6_num1 = input("Enter an integer to start counting! ")
-            q6_num2 = input("Enter an integer to end your counting! ")
-            try:
-                q6_num1 = int(q6_num1)
-                q6_num2 = int(q6_num2)
-                for number in range(q6_num1, q6_num2 +1):
-                    print(number)
-                    number = number + 1
-                print(" ")
-                print("All done counting!")
-                break
-            except: 
-                print("Invalid input. Try again.")
-            
+        for number in range(start_num, end_num +1):
+            print(number)
+            number = number + 1
+
     # 7: calculate hypotenuse
     def calculateHypotenuse(self, base, perpendicular):
         base_squared = self.calculateSquare(base)
@@ -230,7 +219,18 @@ You can chose to do any of the following.
                 instance.factorial()
                 break
             elif selection == 6:
-                instance.counting()
+                while True:
+                    q6_startnum = input("Enter an integer to start counting! ")
+                    q6_endnum = input("Enter an integer to end your counting! ")
+                    try:
+                        q6_startnum = int(q6_startnum)
+                        q6_endnum = int(q6_endnum)
+                        instance.counting(q6_startnum, q6_endnum)
+                        break
+                    except: 
+                        print("Invalid input. Try again. You will need two integers.")
+                print("All done counting!")
+                        
                 break
             elif selection == 7:
                 while True:
