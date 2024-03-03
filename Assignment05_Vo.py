@@ -184,11 +184,15 @@ You can chose to do any of the following.
                     q8_width = input("Enter the width of your rectangle: ")
                     try: 
                         q8_width = float(q8_width)
-                        q8_height = input("Enter the height of your rectangle: ")
-                        try:
-                            q8_height = float(q8_height)
-                        except:
-                             print("Invalid height.") 
+                        while True:
+                            try:
+                                q8_height = input("Enter the height of your rectangle: ")
+                                q8_height = float(q8_height)
+                                print("The area of your rectangle is", instance.rectangular_area(q8_width, q8_height))
+                                break
+                            except:
+                                 print("Invalid height.") 
+                        break
                     except:
                         print("Invalid width.")
                 break
@@ -198,7 +202,8 @@ You can chose to do any of the following.
                 break
         else:
             print("Invalid input. You must select a number between 1 and 10.")
-        
+   
+    print(" ")    
     return print("Thanks for doing a task!")
 
 # ============================================    
