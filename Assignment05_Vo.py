@@ -162,6 +162,7 @@ class BasicMathOperations:
         
 # ============================================        
 def main():
+    # Create an Instance of this Class
     instance = BasicMathOperations()
     print(""""
 You can chose to do any of the following.
@@ -335,10 +336,12 @@ You can chose to do any of the following.
                             print("Lengths are only positive numbers.")
                     except:
                         print("Invalid width.")
+                # Assigned values for area
                 q8_pt2_width = 10
                 q8_pt2_height = 6
-                print("Given width is", q8_pt2_width)
-                print("Given height is", q8_pt2_height)
+                # PRint to use the values and area
+                print("Program assigned width is", q8_pt2_width)
+                print("Program assigned  height is", q8_pt2_height)
                 print("The area of the 10 x 6 second rectangle is", instance.rectangular_area(q8_pt2_width, q8_pt2_height))
                 break
             elif selection == 9:
@@ -346,38 +349,49 @@ You can chose to do any of the following.
                 while True:
                     q9_base = input("Enter a value for the base number for which to find the power: ")
                     try:
+                        # check if the base is an integer
+                        # do this so that not everything is turned into a float if unnecessary
                         q9_base = int(q9_base)
                         while True: 
                             try:
+                                # ask for a power
                                 q9_exponent = input("Enter a power to which you will raise the base: ")
-                                q9_exponent = int(q9_exponent)
+                                # evaluate what is given, in case it is a fraction
+                                q9_exponent = eval(q9_exponent)
                                 power_value = instance.number_power(q9_base, q9_exponent)
                                 print(f"{q9_base} to the power of {q9_exponent} is", power_value)
                                 break
                             except:
-                                 print("The power must be an integer.")
+                                 print("The power must be a number.")
                         break
                     except ValueError:
                         try:
                             q9_base = float(q9_base)
                             while True: 
                                try:
+                                   # ask for a power
                                    q9_exponent = input("Enter a power to which you will raise the base: ")
-                                   q9_exponent = int(q9_exponent)
+                                   # evaluate what is given, in case it is a fraction
+                                   q9_exponent = eval(q9_exponent)
                                    power_value = instance.number_power(q9_base, q9_exponent)
                                    print(f"{q9_base} to the power of {q9_exponent} is", power_value)
                                    break
                                except:
-                                    print("The power must be an integer.")
+                                    print("The power must be a number.")
                             break
                         except:
+                            # if the base isn't a float
                             print("Invalid base number.")
                     except:
+                        # if base isn't an int or a float
                         print("Invalid base number.")
 
                 break
             else:
+                # question 10, find the type of argument
+                # ask for an input
                 input_argument = input("Enter an argument to find its type: ")
+                # call the function, pass the BasicMathOperations class instance to use later
                 question10(input_argument, instance)
                 break
         else:
@@ -389,44 +403,59 @@ You can chose to do any of the following.
 # ============================================    
 
 def question10(input_argument, instance):
+    # check if the input is a digit --> int
     if input_argument.isdigit():
         instance.argument_type(int(input_argument))
+    # if there is a point in the string, check if it is a float
     elif '.' in input_argument:
         try:
             instance.argument_type(float(input_argument))
+        # if not a float, put it through to the type method (will come out string)
         except ValueError:
             instance.argument_type(input_argument)
+    # if there is a + or - in it, it could be a complex number
     elif '+' in input_argument or '-' in input_argument:
         try:
+            # check if complex
             instance.argument_type(eval(complex(input_argument)))
         except ValueError:
             instance.argument_type(input_argument)
+    # curly brackets could mean set or dictionary
     elif '{' in input_argument and '}' in input_argument:
+        # evaluate if it is a dictionary, if not, print message of why it might not be
+        # put through the argument type method
         if ':' in input_argument:
             try:
                 input_argument = eval(input_argument)
                 instance.argument_type(input_argument)
-            except ValueError:
+            except NameError:
+                print("If you meant to make a dictionary, perhaps you forgot quotes around strings.")
                 instance.argument_type(input_argument)
         else:
+         # evaluate if it is a set, if not, print message of why it might not be
+         # put through the argument type method
             try:
-                instance.argument_type(set(input_argument))
-            except ValueError:
+                instance.argument_type(eval(input_argument))
+            except NameError:
+                print("If you meant to make a set, perhaps you forgot quotes around strings.")
                 instance.argument_type(input_argument)
+    # straight brackets could mean list
     elif '[' in input_argument and ']' in input_argument:
         try:
-            instance.argument_type(list(input_argument))
-        except ValueError:
+            instance.argument_type(eval(input_argument))
+        # if don't put quotes around strings, it will not be a list
+        except NameError:
+            "If you were trying to make a list, check the quotes around strings."
             instance.argument_type(input_argument)
     elif '(' in input_argument and ')' in input_argument:
+        # if it has () it could be a tuple, check if it is with eval
         try:
-            input_argument = input_argument.lstrip('(')
-            input_argument = input_argument.lstrip(')')
             if ',' in input_argument:
-                instance.argument_type(tuple(input_argument))
+                instance.argument_type(eval(input_argument))
             else:
                 instance.argument_type(input_argument)
-        except ValueError:
+        except NameError:
+            print("If you meant to make a tuple, perhaps you forgot quotes around strings.")
             instance.argument_type(input_argument)
     else:
         instance.argument_type(input_argument)
