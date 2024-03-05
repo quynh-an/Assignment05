@@ -460,7 +460,6 @@ def question10(input_argument, instance):
     else:
         instance.argument_type(input_argument)
 
-
 # ===============================================
 
 main()
