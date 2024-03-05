@@ -411,14 +411,17 @@ def question10(input_argument, instance):
         try:
             instance.argument_type(float(input_argument))
         # if not a float, put it through to the type method (will come out string)
-        except ValueError:
+        except:
             instance.argument_type(input_argument)
     # if there is a + or - in it, it could be a complex number
     elif '+' in input_argument or '-' in input_argument:
         try:
             # check if complex
             instance.argument_type(eval(complex(input_argument)))
-        except ValueError:
+        except TypeError:
+            if input_argument.strip("-").isdigit():
+                instance.argument_type(int(input_argument))
+        except: 
             instance.argument_type(input_argument)
     # curly brackets could mean set or dictionary
     elif '{' in input_argument and '}' in input_argument:
