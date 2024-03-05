@@ -76,7 +76,7 @@ class BasicMathOperations:
                      continue  
             break
         # find the sum
-        num_sum = round(q2_num1 + q2_num2, 4)
+        num_sum = q2_num1 + q2_num2
         # return the sum
         return print("The sum of your numbers is", num_sum)
     
@@ -405,7 +405,10 @@ You can chose to do any of the following.
 def question10(input_argument, instance):
     # check if the input is a digit --> int
     if input_argument.isdigit():
-        instance.argument_type(int(input_argument))
+        if input_argument[0] == "0":
+            instance.argument_type((input_argument))
+        else:
+            instance.argument_type(int(input_argument))
     # if there is a point in the string, check if it is a float
     elif '.' in input_argument:
         try:
@@ -419,8 +422,12 @@ def question10(input_argument, instance):
             # check if complex
             instance.argument_type(eval(complex(input_argument)))
         except TypeError:
-            if input_argument.strip("-").isdigit():
-                instance.argument_type(int(input_argument))
+            edited_input = input_argument.lstrip("-")
+            if edited_input.isdigit():
+                if edited_input[0] == "0":
+                    instance.argument_type((input_argument))
+                else:
+                    instance.argument_type(int(input_argument))
         except: 
             instance.argument_type(input_argument)
     # curly brackets could mean set or dictionary
@@ -431,7 +438,7 @@ def question10(input_argument, instance):
             try:
                 input_argument = eval(input_argument)
                 instance.argument_type(input_argument)
-            except NameError:
+            except :
                 print("If you meant to make a dictionary, perhaps you forgot quotes around strings.")
                 instance.argument_type(input_argument)
         else:
@@ -439,7 +446,7 @@ def question10(input_argument, instance):
          # put through the argument type method
             try:
                 instance.argument_type(eval(input_argument))
-            except NameError:
+            except :
                 print("If you meant to make a set, perhaps you forgot quotes around strings.")
                 instance.argument_type(input_argument)
     # straight brackets could mean list
@@ -447,7 +454,7 @@ def question10(input_argument, instance):
         try:
             instance.argument_type(eval(input_argument))
         # if don't put quotes around strings, it will not be a list
-        except NameError:
+        except :
             "If you were trying to make a list, check the quotes around strings."
             instance.argument_type(input_argument)
     elif '(' in input_argument and ')' in input_argument:
@@ -457,7 +464,7 @@ def question10(input_argument, instance):
                 instance.argument_type(eval(input_argument))
             else:
                 instance.argument_type(input_argument)
-        except NameError:
+        except:
             print("If you meant to make a tuple, perhaps you forgot quotes around strings.")
             instance.argument_type(input_argument)
     else:
